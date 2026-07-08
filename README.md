@@ -8,6 +8,11 @@ A **social listening & media crisis monitoring** platform built with **.NET 9 mi
   <img src="docs/architecture.svg" alt="BrandRadar architecture" width="840">
 </p>
 
+<p align="center"><em>Dashboard (illustration)</em></p>
+<p align="center">
+  <img src="docs/dashboard-mockup.svg" alt="BrandRadar dashboard" width="840">
+</p>
+
 ---
 
 # English
@@ -36,6 +41,11 @@ RabbitMQ  mentions.exchange → mentions.ingest   (→ DLQ on error)
         Dashboard.Api  ──(LiveConsumer)── SignalR ──► Browser (realtime)
         Dashboard.Api  ── REST ◄── Elasticsearch · PostgreSQL(Dapper) · Redis · snapshot
 ```
+
+<p align="center"><em>Crisis alert flow — from collection to a realtime browser alert</em></p>
+<p align="center">
+  <img src="docs/crisis-flow.svg" alt="Crisis alert flow" width="820">
+</p>
 
 ## 2. Services & tech
 

@@ -1,0 +1,86 @@
+<svg width="900" viewBox="0 0 900 540" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+<title>BrandRadar dashboard (illustration)</title>
+<desc>Illustrative mockup of the BrandRadar dashboard: sidebar navigation, KPI cards, hourly volume chart, sentiment donut, and a realtime mention feed.</desc>
+
+<rect x="0" y="0" width="900" height="540" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+
+<!-- Sidebar -->
+<rect x="8" y="8" width="188" height="524" rx="10" fill="#0f172a"/>
+<circle cx="30" cy="40" r="6" fill="#38bdf8"/>
+<text x="44" y="45" font-size="16" font-weight="700" fill="#e2e8f0">BrandRadar</text>
+
+<rect x="14" y="72" width="168" height="32" rx="8" fill="#38bdf8"/>
+<text x="30" y="93" font-size="13" font-weight="600" fill="#06283a">▦  Tổng quan</text>
+<text x="30" y="127" font-size="13" fill="#94a3b8">⚡  Trực tiếp</text>
+<text x="30" y="161" font-size="13" fill="#94a3b8">💬  Mentions</text>
+<text x="30" y="195" font-size="13" fill="#94a3b8">🗞  Tin nổi bật</text>
+<text x="30" y="229" font-size="13" fill="#94a3b8">📊  Báo cáo</text>
+<text x="30" y="263" font-size="13" fill="#94a3b8">❤  Sức khỏe TH</text>
+<text x="30" y="297" font-size="13" fill="#94a3b8">🚨  Cảnh báo</text>
+<text x="30" y="331" font-size="13" fill="#94a3b8">📐  Luật cảnh báo</text>
+<text x="30" y="365" font-size="13" fill="#94a3b8">⚖  So sánh</text>
+<text x="30" y="399" font-size="13" fill="#94a3b8">⚙  Quản lý</text>
+
+<!-- Top bar -->
+<text x="216" y="46" font-size="20" font-weight="700" fill="#1e293b">Tổng quan</text>
+<circle cx="742" cy="40" r="5" fill="#22c55e"/>
+<text x="752" y="45" font-size="12.5" fill="#64748b">Realtime</text>
+<rect x="812" y="26" width="72" height="28" rx="8" fill="#f1f5f9" stroke="#e2e8f0"/>
+<text x="848" y="45" text-anchor="middle" font-size="12" fill="#475569">admin</text>
+
+<!-- KPI cards -->
+<g>
+<rect x="216" y="70" width="158" height="84" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="232" y="112" font-size="26" font-weight="700" fill="#38bdf8">1,248</text>
+<text x="232" y="134" font-size="12" fill="#64748b">Tổng mention</text>
+
+<rect x="384" y="70" width="158" height="84" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="400" y="112" font-size="26" font-weight="700" fill="#22c55e">62%</text>
+<text x="400" y="134" font-size="12" fill="#64748b">Tích cực</text>
+
+<rect x="552" y="70" width="158" height="84" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="568" y="112" font-size="26" font-weight="700" fill="#ef4444">14%</text>
+<text x="568" y="134" font-size="12" fill="#64748b">Tiêu cực</text>
+
+<rect x="720" y="70" width="164" height="84" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="736" y="112" font-size="26" font-weight="700" fill="#f59e0b">3</text>
+<text x="736" y="134" font-size="12" fill="#64748b">Cảnh báo mở</text>
+</g>
+
+<!-- Volume chart -->
+<rect x="216" y="168" width="430" height="182" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="232" y="194" font-size="14" font-weight="600" fill="#1e293b">Khối lượng theo giờ</text>
+<polyline points="240,320 285,300 330,308 375,270 420,285 465,240 510,255 555,210 600,230 630,205"
+  fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+<polygon points="240,320 285,300 330,308 375,270 420,285 465,240 510,255 555,210 600,230 630,205 630,332 240,332"
+  fill="#38bdf8" opacity="0.10"/>
+<line x1="232" y1="332" x2="632" y2="332" stroke="#e2e8f0"/>
+
+<!-- Sentiment donut -->
+<rect x="658" y="168" width="226" height="182" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="674" y="194" font-size="14" font-weight="600" fill="#1e293b">Sắc thái</text>
+<g transform="translate(742,268)">
+  <circle r="46" fill="none" stroke="#22c55e" stroke-width="16" stroke-dasharray="179.2 109.8" transform="rotate(-90)"/>
+  <circle r="46" fill="none" stroke="#94a3b8" stroke-width="16" stroke-dasharray="69.4 219.6" stroke-dashoffset="-179.2" transform="rotate(-90)"/>
+  <circle r="46" fill="none" stroke="#ef4444" stroke-width="16" stroke-dasharray="40.5 248.5" stroke-dashoffset="-248.6" transform="rotate(-90)"/>
+</g>
+<circle cx="820" cy="248" r="5" fill="#22c55e"/><text x="830" y="252" font-size="11" fill="#64748b">Tích cực</text>
+<circle cx="820" cy="268" r="5" fill="#94a3b8"/><text x="830" y="272" font-size="11" fill="#64748b">Trung tính</text>
+<circle cx="820" cy="288" r="5" fill="#ef4444"/><text x="830" y="292" font-size="11" fill="#64748b">Tiêu cực</text>
+
+<!-- Mention feed -->
+<rect x="216" y="364" width="668" height="160" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="232" y="390" font-size="14" font-weight="600" fill="#1e293b">Mention mới (realtime)</text>
+
+<rect x="232" y="402" width="60" height="20" rx="10" fill="#dcfce7"/><text x="262" y="416" text-anchor="middle" font-size="11" fill="#166534">Positive</text>
+<text x="302" y="416" font-size="12.5" fill="#334155">VinFast bàn giao lô xe điện đầu tiên, khách hàng phản hồi tích cực…</text>
+
+<rect x="232" y="432" width="60" height="20" rx="10" fill="#fee2e2"/><text x="262" y="446" text-anchor="middle" font-size="11" fill="#991b1b">Negative</text>
+<text x="302" y="446" font-size="12.5" fill="#334155">Người dùng phàn nàn về dịch vụ hậu mãi của một hãng bay…</text>
+
+<rect x="232" y="462" width="60" height="20" rx="10" fill="#f1f5f9"/><text x="262" y="476" text-anchor="middle" font-size="11" fill="#475569">Neutral</text>
+<text x="302" y="476" font-size="12.5" fill="#334155">Ngân hàng công bố kết quả kinh doanh quý mới nhất…</text>
+
+<rect x="232" y="492" width="60" height="20" rx="10" fill="#dcfce7"/><text x="262" y="506" text-anchor="middle" font-size="11" fill="#166534">Positive</text>
+<text x="302" y="506" font-size="12.5" fill="#334155">Sàn thương mại điện tử tung ưu đãi, được cộng đồng đánh giá cao…</text>
+</svg>

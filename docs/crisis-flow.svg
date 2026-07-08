@@ -1,0 +1,56 @@
+<svg width="900" viewBox="0 0 900 430" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+<title>Crisis alert flow (sequence)</title>
+<desc>Sequence of a mention from collection to a realtime crisis alert across Collector, RabbitMQ, Analysis.Worker, datastores, Kafka and the dashboard.</desc>
+<defs>
+<marker id="s" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#4f46e5"/></marker>
+<marker id="g" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/></marker>
+</defs>
+
+<rect x="0" y="0" width="900" height="430" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="30" y="36" font-size="18" font-weight="700" fill="#0f172a">Luồng phát hiện &amp; cảnh báo khủng hoảng</text>
+
+<!-- lifelines -->
+<g font-size="12.5" font-weight="600" fill="#1e293b" text-anchor="middle">
+<rect x="40"  y="56" width="120" height="34" rx="8" fill="#f1f5f9" stroke="#94a3b8"/><text x="100" y="78">Collector</text>
+<rect x="192" y="56" width="120" height="34" rx="8" fill="#f1f5f9" stroke="#94a3b8"/><text x="252" y="78">RabbitMQ</text>
+<rect x="344" y="56" width="130" height="34" rx="8" fill="#eef2ff" stroke="#4f46e5"/><text x="409" y="78">Analysis.Worker</text>
+<rect x="506" y="56" width="130" height="34" rx="8" fill="#f1f5f9" stroke="#94a3b8"/><text x="571" y="78">Postgres + ES</text>
+<rect x="668" y="56" width="90"  height="34" rx="8" fill="#f1f5f9" stroke="#94a3b8"/><text x="713" y="78">Kafka</text>
+<rect x="766" y="56" width="110" height="34" rx="8" fill="#eef2ff" stroke="#4f46e5"/><text x="821" y="78">Dashboard</text>
+</g>
+
+<!-- lifeline verticals -->
+<g stroke="#cbd5e1" stroke-dasharray="4 4">
+<line x1="100" y1="90" x2="100" y2="400"/>
+<line x1="252" y1="90" x2="252" y2="400"/>
+<line x1="409" y1="90" x2="409" y2="400"/>
+<line x1="571" y1="90" x2="571" y2="400"/>
+<line x1="713" y1="90" x2="713" y2="400"/>
+<line x1="821" y1="90" x2="821" y2="400"/>
+</g>
+
+<!-- messages -->
+<g font-size="12" fill="#334155">
+<line x1="100" y1="120" x2="252" y2="120" stroke="#4f46e5" stroke-width="1.6" marker-end="url(#s)"/>
+<text x="106" y="114">1· publish RawMention (RSS/Google News/Reddit)</text>
+
+<line x1="252" y1="156" x2="409" y2="156" stroke="#4f46e5" stroke-width="1.6" marker-end="url(#s)"/>
+<text x="258" y="150">2· consume (prefetch, dedup)</text>
+
+<line x1="409" y1="192" x2="571" y2="192" stroke="#4f46e5" stroke-width="1.6" marker-end="url(#s)"/>
+<text x="415" y="186">3· lưu + đánh index (sentiment · brand · fingerprint)</text>
+
+<rect x="381" y="216" width="140" height="30" rx="6" fill="#fff7ed" stroke="#f59e0b"/>
+<text x="409" y="235" text-anchor="middle" font-size="11.5" fill="#9a3412">4· đánh giá luật/cửa sổ</text>
+<line x1="409" y1="246" x2="409" y2="266" stroke="#f59e0b" stroke-width="1.4"/>
+
+<line x1="409" y1="286" x2="713" y2="286" stroke="#4f46e5" stroke-width="1.6" marker-end="url(#s)"/>
+<text x="415" y="280">5· ngưỡng vượt → publish AlertMessage</text>
+
+<line x1="713" y1="322" x2="821" y2="322" stroke="#4f46e5" stroke-width="1.6" marker-end="url(#s)"/>
+<text x="600" y="316">6· relay (LiveConsumer)</text>
+
+<line x1="821" y1="358" x2="700" y2="358" stroke="#16a34a" stroke-width="1.8" marker-end="url(#g)"/>
+<text x="612" y="352" fill="#166534">7· SignalR push → toast + âm báo trên trình duyệt</text>
+</g>
+</svg>
