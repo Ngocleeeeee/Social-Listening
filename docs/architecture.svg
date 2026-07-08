@@ -1,0 +1,92 @@
+<svg width="900" viewBox="0 0 900 736" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+<title>BrandRadar architecture</title>
+<desc>Data flows from real sources through Collector, RabbitMQ, Analysis.Worker, then into PostgreSQL, Elasticsearch and Kafka, and finally to Dashboard.Api and the browser.</desc>
+<defs>
+<marker id="ar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/></marker>
+</defs>
+
+<rect x="0" y="0" width="900" height="736" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+
+<text x="30" y="40" font-size="20" font-weight="700" fill="#0f172a">BrandRadar — System Architecture</text>
+
+<rect x="590" y="24" width="15" height="15" rx="3" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+<text x="612" y="36" font-size="12.5" fill="#475569">Custom services (.NET / Python)</text>
+<rect x="590" y="46" width="15" height="15" rx="3" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="612" y="58" font-size="12.5" fill="#475569">Infrastructure / client</text>
+
+<!-- Sources -->
+<rect x="40"  y="70" width="250" height="50" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="165" y="100" text-anchor="middle" font-size="15" fill="#1e293b">Báo chí · RSS</text>
+<rect x="325" y="70" width="250" height="50" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="450" y="100" text-anchor="middle" font-size="15" fill="#1e293b">Google News</text>
+<rect x="610" y="70" width="250" height="50" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="735" y="100" text-anchor="middle" font-size="15" fill="#1e293b">Reddit</text>
+
+<line x1="165" y1="120" x2="410" y2="156" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="450" y1="120" x2="450" y2="156" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="735" y1="120" x2="490" y2="156" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<!-- Collector -->
+<rect x="300" y="160" width="300" height="54" rx="9" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+<text x="450" y="184" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">Collector.Worker</text>
+<text x="450" y="202" text-anchor="middle" font-size="12" fill="#64748b">.NET BackgroundService · poll định kỳ</text>
+<line x1="450" y1="214" x2="450" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<!-- RabbitMQ -->
+<rect x="300" y="254" width="300" height="54" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="450" y="278" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">RabbitMQ</text>
+<text x="450" y="296" text-anchor="middle" font-size="12" fill="#64748b">ingest queue + Dead-Letter</text>
+<line x1="450" y1="308" x2="450" y2="344" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<!-- Analysis + NLP -->
+<rect x="250" y="348" width="380" height="54" rx="9" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+<text x="440" y="372" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">Analysis.Worker</text>
+<text x="440" y="390" text-anchor="middle" font-size="12" fill="#64748b">sentiment · brand · fingerprint · crisis / rules</text>
+<rect x="670" y="348" width="190" height="54" rx="9" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+<text x="765" y="372" text-anchor="middle" font-size="14" font-weight="600" fill="#1e293b">Sentiment NLP</text>
+<text x="765" y="390" text-anchor="middle" font-size="12" fill="#64748b">Python · RoBERTa</text>
+<line x1="632" y1="368" x2="668" y2="368" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="668" y1="382" x2="632" y2="382" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<!-- Stores -->
+<line x1="360" y1="402" x2="180" y2="446" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="440" y1="402" x2="450" y2="446" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="540" y1="402" x2="720" y2="446" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<rect x="40"  y="450" width="250" height="54" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="165" y="474" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">PostgreSQL</text>
+<text x="165" y="492" text-anchor="middle" font-size="12" fill="#64748b">EF Core · index</text>
+<rect x="325" y="450" width="250" height="54" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="450" y="474" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">Elasticsearch</text>
+<text x="450" y="492" text-anchor="middle" font-size="12" fill="#64748b">search + aggregations</text>
+<rect x="610" y="450" width="250" height="54" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="735" y="474" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">Kafka</text>
+<text x="735" y="492" text-anchor="middle" font-size="12" fill="#64748b">analyzed-mention · alerts</text>
+
+<!-- Dashboard row -->
+<line x1="165" y1="504" x2="340" y2="548" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="450" y1="504" x2="450" y2="548" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="735" y1="504" x2="560" y2="548" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<rect x="230" y="552" width="440" height="60" rx="9" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+<text x="450" y="578" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">Dashboard.Api</text>
+<text x="450" y="596" text-anchor="middle" font-size="12" fill="#64748b">REST · SignalR · snapshot read-model · JWT</text>
+
+<rect x="700" y="554" width="160" height="56" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="780" y="578" text-anchor="middle" font-size="14" font-weight="600" fill="#1e293b">Redis</text>
+<text x="780" y="595" text-anchor="middle" font-size="12" fill="#64748b">cache · alert-ack</text>
+<line x1="672" y1="576" x2="698" y2="576" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="698" y1="590" x2="672" y2="590" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<rect x="40" y="554" width="170" height="56" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="125" y="578" text-anchor="middle" font-size="14" font-weight="600" fill="#1e293b">Prometheus</text>
+<text x="125" y="595" text-anchor="middle" font-size="12" fill="#64748b">+ Grafana</text>
+<line x1="230" y1="582" x2="212" y2="582" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<!-- Browser -->
+<line x1="450" y1="612" x2="450" y2="648" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+<text x="462" y="634" font-size="12" fill="#64748b">SignalR + REST</text>
+<rect x="300" y="652" width="300" height="54" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="450" y="676" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">Trình duyệt · React</text>
+<text x="450" y="694" text-anchor="middle" font-size="12" fill="#64748b">realtime feed · charts · alerts</text>
+</svg>
