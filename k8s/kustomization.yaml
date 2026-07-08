@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: brandradar
+resources:
+  - 00-namespace.yaml
+  - 01-config.yaml
+  - 02-infra.yaml
+  - 03-apps.yaml
+  - 04-autoscaling.yaml
+  - 05-ingress.yaml

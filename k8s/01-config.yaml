@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: br-config
+  namespace: brandradar
+data:
+  ConnectionStrings__Postgres: "Host=postgres;Port=5432;Database=brandradar;Username=radar;Password=radar"
+  RabbitMq__Host: "rabbitmq"
+  Kafka__BootstrapServers: "kafka:29092"
+  Elasticsearch__Uri: "http://elasticsearch:9200"
+  Redis: "redis:6379"
+  Sentiment__Provider: "nlp"
+  Sentiment__Nlp__Url: "http://sentiment-nlp:8000"
+  Jwt__Issuer: "brandradar"
+  Jwt__Audience: "brandradar"
+  Llm__Url: ""
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: br-secret
+  namespace: brandradar
+type: Opaque
+stringData:
+  Jwt__Key: "brandradar-super-secret-key-change-me-please-32b"
+  Auth__Username: "admin"
+  Auth__Password: "admin123"

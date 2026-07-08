@@ -1,0 +1,99 @@
+# Application microservices. Build & load images first (see k8s/README.md).
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: sentiment-nlp, namespace: brandradar }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: sentiment-nlp } }
+  template:
+    metadata: { labels: { app: sentiment-nlp } }
+    spec:
+      containers:
+        - name: sentiment-nlp
+          image: brandradar-sentiment-nlp:latest
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: 8000 }]
+          readinessProbe: { httpGet: { path: /health, port: 8000 }, initialDelaySeconds: 40, periodSeconds: 10 }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: sentiment-nlp, namespace: brandradar }
+spec: { selector: { app: sentiment-nlp }, ports: [{ port: 8000, targetPort: 8000 }] }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: collector, namespace: brandradar }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: collector } }
+  template:
+    metadata: { labels: { app: collector } }
+    spec:
+      containers:
+        - name: collector
+          image: brandradar-collector:latest
+          imagePullPolicy: IfNotPresent
+          envFrom: [{ configMapRef: { name: br-config } }]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: analysis, namespace: brandradar }
+spec:
+  replicas: 2                     # competing consumers — scale horizontally
+  selector: { matchLabels: { app: analysis } }
+  template:
+    metadata: { labels: { app: analysis } }
+    spec:
+      containers:
+        - name: analysis
+          image: brandradar-analysis:latest
+          imagePullPolicy: IfNotPresent
+          envFrom: [{ configMapRef: { name: br-config } }]
+          resources: { requests: { cpu: "100m", memory: "128Mi" }, limits: { cpu: "500m", memory: "512Mi" } }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: dashboard-api, namespace: brandradar }
+spec:
+  replicas: 2
+  selector: { matchLabels: { app: dashboard-api } }
+  template:
+    metadata: { labels: { app: dashboard-api } }
+    spec:
+      containers:
+        - name: dashboard-api
+          image: brandradar-dashboard-api:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef: { name: br-config }
+            - secretRef: { name: br-secret }
+          ports: [{ containerPort: 8080 }]
+          resources: { requests: { cpu: "100m", memory: "128Mi" }, limits: { cpu: "500m", memory: "512Mi" } }
+          readinessProbe: { httpGet: { path: /health/ready, port: 8080 }, initialDelaySeconds: 15, periodSeconds: 10 }
+          livenessProbe: { httpGet: { path: /health/live, port: 8080 }, initialDelaySeconds: 20, periodSeconds: 15 }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: dashboard-api, namespace: brandradar }
+spec: { selector: { app: dashboard-api }, ports: [{ port: 8080, targetPort: 8080 }] }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: frontend, namespace: brandradar }
+spec:
+  replicas: 2
+  selector: { matchLabels: { app: frontend } }
+  template:
+    metadata: { labels: { app: frontend } }
+    spec:
+      containers:
+        - name: frontend
+          image: brandradar-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: 80 }]
+---
+apiVersion: v1
+kind: Service
+metadata: { name: frontend, namespace: brandradar }
+spec: { selector: { app: frontend }, ports: [{ port: 80, targetPort: 80 }] }
