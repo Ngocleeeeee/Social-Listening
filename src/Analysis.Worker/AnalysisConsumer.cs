@@ -61,6 +61,18 @@ public sealed class AnalysisConsumer(
             var raw = JsonSerializer.Deserialize<RawMention>(ea.Body.Span)
                       ?? throw new InvalidOperationException("bad payload");
 
+            using var scope = scopeFactory.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<BrandRadarDbContext>();
+
+            // Skip duplicates BEFORE any expensive work. RSS re-fetches the same items every poll,
+            // so most deliveries are repeats — running NLP/ES on them again pegs the sentiment
+            // service (continuous /analyze calls, high CPU) for results we immediately discard.
+            if (await db.Mentions.AnyAsync(m => m.ExternalId == raw.Id))
+            {
+                await _channel!.BasicAckAsync(ea.DeliveryTag, multiple: false);
+                return;
+            }
+
             var text = $"{raw.Title} {raw.Content}";
             var sent = await sentiment.AnalyzeAsync(text);
             var topics = sentiment.ExtractTopics(text);
@@ -68,16 +80,6 @@ public sealed class AnalysisConsumer(
             var lang = ViDiacritics.IsMatch(text) ? "vi" : "en";
             var fingerprint = BrandRadar.Shared.Text.Fingerprint.Of(raw.Title); // cluster near-duplicate coverage
             var publishedUtc = raw.PublishedAt.ToUniversalTime(); // Postgres timestamptz requires UTC
-
-            using var scope = scopeFactory.CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<BrandRadarDbContext>();
-
-            // Skip duplicates (RSS re-fetches the same items every poll) — don't re-index or re-stream.
-            if (await db.Mentions.AnyAsync(m => m.ExternalId == raw.Id))
-            {
-                await _channel!.BasicAckAsync(ea.DeliveryTag, multiple: false);
-                return;
-            }
 
             db.Mentions.Add(new Mention
             {

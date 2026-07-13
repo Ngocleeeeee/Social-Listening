@@ -10,6 +10,10 @@ COPY app.py .
 
 # Bake the model into the image so startup is fast (no runtime download)
 ENV MODEL=cardiffnlp/twitter-xlm-roberta-base-sentiment
+# Bound CPU threads so concurrent requests parallelise instead of oversubscribing cores.
+# OMP_NUM_THREADS must be set before torch is imported, hence here rather than in code.
+ENV TORCH_THREADS=2
+ENV OMP_NUM_THREADS=2
 RUN python -c "from transformers import pipeline; pipeline('sentiment-analysis', model='${MODEL}')"
 
 EXPOSE 8000
