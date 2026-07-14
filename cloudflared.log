@@ -1,0 +1,63 @@
+2026-07-13T09:22:02Z ERR Configuration file /dev/null was empty
+2026-07-13T09:22:02Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
+2026-07-13T09:22:02Z INF Requesting new quick Tunnel on trycloudflare.com...
+2026-07-13T09:22:07Z INF +--------------------------------------------------------------------------------------------+
+2026-07-13T09:22:07Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+2026-07-13T09:22:07Z INF |  https://copper-early-gpl-refuse.trycloudflare.com                                         |
+2026-07-13T09:22:07Z INF +--------------------------------------------------------------------------------------------+
+2026-07-13T09:22:07Z INF Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]
+2026-07-13T09:22:07Z INF Version 2026.7.1 (Checksum 79a0ade7fc854f62c1aaef48424d9d979e8c2fcd039189d24db82b84cd146be1)
+2026-07-13T09:22:07Z INF GOOS: linux, GOVersion: go1.26.4, GoArch: amd64
+2026-07-13T09:22:07Z INF Settings: map[config:/dev/null ha-connections:1 protocol:quic url:http://localhost:3000]
+2026-07-13T09:22:07Z INF cloudflared will not automatically update if installed by a package manager.
+2026-07-13T09:22:07Z INF Generated Connector ID: e6ff76f1-2f3f-41c3-b7db-c3d94b741dfa
+2026-07-13T09:22:07Z INF Initial protocol quic
+2026-07-13T09:22:07Z INF ICMP proxy will use 172.16.2.98 as source for IPv4
+2026-07-13T09:22:07Z INF ICMP proxy will use fe80::b557:2754:5e95:c6bc in zone wlp0s20f3 as source for IPv6
+2026-07-13T09:22:07Z INF ICMP proxy will use 172.16.2.98 as source for IPv4
+2026-07-13T09:22:07Z INF ICMP proxy will use fe80::b557:2754:5e95:c6bc in zone wlp0s20f3 as source for IPv6
+2026-07-13T09:22:07Z INF Starting metrics server on 127.0.0.1:20241/metrics
+2026-07-13T09:22:07Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.192.27
+2026-07-13T09:22:07Z INF Registered tunnel connection connIndex=0 connection=00cf3c53-b9e5-41f3-ae27-2e01c2690ad6 event=0 ip=198.41.192.27 location=hkg09 protocol=quic
+2026-07-13T09:22:13Z INF +-------------------------------------------------------------------------------------+
+2026-07-13T09:22:13Z INF |                               CONNECTIVITY PRE-CHECKS                               |
+2026-07-13T09:22:13Z INF +-------------------------------------------------------------------------------------+
+2026-07-13T09:22:13Z INF |  COMPONENT         TARGET                     STATUS  DETAILS                       |
+2026-07-13T09:22:13Z INF |  DNS Resolution    region1.v2.argotunnel.com  PASS    DNS Resolved successfully     |
+2026-07-13T09:22:13Z INF |  DNS Resolution    region2.v2.argotunnel.com  PASS    DNS Resolved successfully     |
+2026-07-13T09:22:13Z INF |  UDP Connectivity  region1.v2.argotunnel.com  PASS    QUIC connection successful    |
+2026-07-13T09:22:13Z INF |  UDP Connectivity  region2.v2.argotunnel.com  PASS    QUIC connection successful    |
+2026-07-13T09:22:13Z INF |  TCP Connectivity  region1.v2.argotunnel.com  PASS    HTTP/2 connection successful  |
+2026-07-13T09:22:13Z INF |  TCP Connectivity  region2.v2.argotunnel.com  PASS    HTTP/2 connection successful  |
+2026-07-13T09:22:13Z INF |  Cloudflare API    api.cloudflare.com:443     PASS    API is reachable              |
+2026-07-13T09:22:13Z INF |                                                                                     |
+2026-07-13T09:22:13Z INF |  SUMMARY: Environment is healthy. cloudflared will use 'quic' as primary protocol.  |
+2026-07-13T09:22:13Z INF +-------------------------------------------------------------------------------------+
+2026-07-13T09:22:13Z INF precheck component="DNS Resolution" details="DNS Resolved successfully" run_id=be3a8b84-3025-4776-b40f-f935fe2713ff status=pass target=region1.v2.argotunnel.com
+2026-07-13T09:22:13Z INF precheck component="DNS Resolution" details="DNS Resolved successfully" run_id=be3a8b84-3025-4776-b40f-f935fe2713ff status=pass target=region2.v2.argotunnel.com
+2026-07-13T09:22:13Z INF precheck component="UDP Connectivity" details="QUIC connection successful" run_id=be3a8b84-3025-4776-b40f-f935fe2713ff status=pass target=region1.v2.argotunnel.com
+2026-07-13T09:22:13Z INF precheck component="UDP Connectivity" details="QUIC connection successful" run_id=be3a8b84-3025-4776-b40f-f935fe2713ff status=pass target=region2.v2.argotunnel.com
+2026-07-13T09:22:13Z INF precheck component="TCP Connectivity" details="HTTP/2 connection successful" run_id=be3a8b84-3025-4776-b40f-f935fe2713ff status=pass target=region1.v2.argotunnel.com
+2026-07-13T09:22:13Z INF precheck component="TCP Connectivity" details="HTTP/2 connection successful" run_id=be3a8b84-3025-4776-b40f-f935fe2713ff status=pass target=region2.v2.argotunnel.com
+2026-07-13T09:22:13Z INF precheck component="Cloudflare API" details="API is reachable" run_id=be3a8b84-3025-4776-b40f-f935fe2713ff status=pass target=api.cloudflare.com:443
+2026-07-13T09:22:13Z INF precheck complete hard_fail=false run_id=be3a8b84-3025-4776-b40f-f935fe2713ff suggested_protocol=quic
+2026-07-14T01:25:00Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:25:00Z ERR failed to run the datagram handler error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:25:00Z ERR failed to serve tunnel connection error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:25:00Z ERR Serve tunnel error error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:25:00Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:25:00Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:25:01Z INF Registered tunnel connection connIndex=0 connection=0e5544ee-0962-4e05-b127-ffa37e3b5168 event=0 ip=198.41.192.27 location=hkg01 protocol=quic
+2026-07-14T01:34:33Z ERR  error="Unable to reach the origin service. The service may be down or it may not be responding to traffic from cloudflared: read tcp 127.0.0.1:35230->127.0.0.1:3000: read: connection reset by peer" connIndex=0 event=1 ingressRule=0 originService=http://localhost:3000
+2026-07-14T01:34:33Z ERR Request failed error="Unable to reach the origin service. The service may be down or it may not be responding to traffic from cloudflared: read tcp 127.0.0.1:35230->127.0.0.1:3000: read: connection reset by peer" connIndex=0 dest=https://copper-early-gpl-refuse.trycloudflare.com/hubs/live/negotiate?negotiateVersion=1 event=0 ip=198.41.192.27 type=http
+2026-07-14T01:34:33Z ERR  error="Unable to reach the origin service. The service may be down or it may not be responding to traffic from cloudflared: EOF" connIndex=0 event=1 ingressRule=0 originService=http://localhost:3000
+2026-07-14T01:34:33Z ERR Request failed error="Unable to reach the origin service. The service may be down or it may not be responding to traffic from cloudflared: EOF" connIndex=0 dest=https://copper-early-gpl-refuse.trycloudflare.com/api/stats/dashboard event=0 ip=198.41.192.27 type=http
+2026-07-14T01:34:35Z INF Initiating graceful shutdown due to signal terminated ...
+2026-07-14T01:34:35Z ERR failed to run the datagram handler error="context canceled" connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:34:35Z ERR failed to serve tunnel connection error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:34:35Z ERR Serve tunnel error error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:34:35Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2026-07-14T01:34:35Z ERR Connection terminated connIndex=0
+2026-07-14T01:34:35Z ERR no more connections active and exiting
+2026-07-14T01:34:35Z INF Tunnel server stopped
+2026-07-14T01:34:35Z INF Metrics server stopped
